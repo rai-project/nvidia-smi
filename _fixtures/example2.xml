@@ -1,0 +1,403 @@
+<?xml version="1.0" ?>
+<!DOCTYPE nvidia_smi_log [
+<!-- nvsmi_device_v7.dtd -->
+<!ELEMENT nvidia_smi_log        (timestamp, driver_version,
+                                 attached_gpus, error_string?, gpu*)>
+
+<!ELEMENT timestamp             (#PCDATA)>
+<!ELEMENT driver_version        (#PCDATA)>
+
+<!ELEMENT attached_gpus         (#PCDATA)>
+
+<!ELEMENT error_string          (#PCDATA)>
+
+<!ELEMENT gpu                   (product_name, product_brand, display_mode,
+                                 display_active,
+                                 persistence_mode,
+                                 accounting_mode,
+                                 accounting_mode_buffer_size,
+                                 driver_model?,
+                                 serial, uuid, minor_number, vbios_version,
+                                 multigpu_board, board_id, inforom_version,
+                                 gpu_operation_mode,
+                                 pci,
+                                 fan_speed, performance_state,
+                                 clocks_throttle_reasons,
+                                 fb_memory_usage,
+                                 bar1_memory_usage,
+                                 compute_mode, utilization,
+                                 ecc_mode, ecc_errors,
+                                 retired_pages,
+                                 temperature, power_readings,
+                                 clocks,
+                                 applications_clocks,
+                                 default_applications_clocks,
+                                 max_clocks,
+                                 clock_policy,
+                                 supported_clocks,
+                                 processes,
+                                 accounted_processes)>
+<!ATTLIST gpu id                CDATA #REQUIRED>
+
+<!ELEMENT product_name          (#PCDATA)>
+<!ELEMENT product_brand         (#PCDATA)>
+<!ELEMENT display_mode          (#PCDATA)>
+<!ELEMENT display_active        (#PCDATA)>
+<!ELEMENT persistence_mode      (#PCDATA)>
+<!ELEMENT accounting_mode       (#PCDATA)>
+<!ELEMENT accounting_mode_buffer_size  (#PCDATA)>
+<!ELEMENT driver_model          (current_dm, pending_dm)>
+<!ELEMENT serial                (#PCDATA)>
+<!ELEMENT uuid                  (#PCDATA)>
+<!ELEMENT minor_number          (#PCDATA)>
+<!ELEMENT vbios_version         (#PCDATA)>
+<!ELEMENT multigpu_board        (#PCDATA)>
+<!ELEMENT board_id              (#PCDATA)>
+<!ELEMENT inforom_version       (img_version, oem_object, ecc_object, pwr_object)>
+<!ELEMENT gpu_operation_mode    (current_gom, pending_gom)>
+<!ELEMENT inforom_checksum      (#PCDATA)>
+<!ELEMENT pci                   (pci_bus, pci_device, pci_domain,
+                                 pci_device_id, pci_bus_id,
+                                 pci_sub_system_id, pci_gpu_link_info, pci_bridge_chip,
+                                 replay_counter, tx_util, rx_util)>
+<!ELEMENT pci_gpu_link_info     (pcie_gen, link_widths)>
+<!ELEMENT pcie_gen              (max_link_gen, current_link_gen)>
+<!ELEMENT max_link_gen          (#PCDATA)>
+<!ELEMENT current_link_gen      (#PCDATA)>
+<!ELEMENT link_widths           (max_link_width, current_link_width)>
+<!ELEMENT max_link_width        (#PCDATA)>
+<!ELEMENT current_link_width    (#PCDATA)>
+<!ELEMENT pci_bridge_chip       (bridge_chip_type, bridge_chip_fw)>
+<!ELEMENT bridge_chip_type      (#PCDATA)>
+<!ELEMENT bridge_chip_fw        (#PCDATA)>
+<!ELEMENT replay_counter        (#PCDATA)>
+<!ELEMENT tx_util               (#PCDATA)>
+<!ELEMENT rx_util               (#PCDATA)>
+<!ELEMENT fan_speed             (#PCDATA)>
+<!ELEMENT fb_memory_usage       (total, used, free)>
+<!ELEMENT bar1_memory_usage     (total, used, free)>
+<!ELEMENT compute_mode          (#PCDATA)>
+<!ELEMENT ecc_mode              (current_ecc, pending_ecc)>
+<!ELEMENT utilization           (gpu_util, memory_util, encoder_util, decoder_util)>
+<!ELEMENT ecc_errors            (volatile, aggregate)>
+<!ELEMENT retired_pages         (multiple_single_bit_retirement,
+                                 double_bit_retirement,
+                                 pending_retirement)>
+<!ELEMENT temperature           (gpu_temp,
+                                 gpu_temp_max_threshold, gpu_temp_slow_threshold)>
+<!ELEMENT power_readings        (power_state, power_management,
+                                 power_draw, power_limit,
+                                 default_power_limit,
+                                 enforced_power_limit,
+                                 min_power_limit, max_power_limit)>
+<!ELEMENT clocks                (graphics_clock, sm_clock, mem_clock)>
+<!ELEMENT max_clocks            (graphics_clock, sm_clock, mem_clock)>
+<!ELEMENT clock_policy          (auto_boost, auto_boost_default)>
+<!ELEMENT auto_boost            (#PCDATA)>
+<!ELEMENT auto_boost_default    (#PCDATA)>
+<!ELEMENT supported_clocks      (#PCDATA | supported_mem_clock)*>
+<!ELEMENT applications_clocks   (graphics_clock, mem_clock)>
+<!ELEMENT default_applications_clocks (graphics_clock, mem_clock)>
+<!ELEMENT supported_mem_clock   (value | supported_graphics_clock)*>
+<!ELEMENT value                 (#PCDATA)>
+<!ELEMENT supported_graphics_clock (#PCDATA)>
+<!ELEMENT processes             (#PCDATA | process_info)*>
+<!ELEMENT accounted_processes   (#PCDATA | accounted_process_info)*>
+
+<!ELEMENT current_dm            (#PCDATA)>
+<!ELEMENT pending_dm            (#PCDATA)>
+<!ELEMENT img_version           (#PCDATA)>
+<!ELEMENT oem_object            (#PCDATA)>
+<!ELEMENT ecc_object            (#PCDATA)>
+<!ELEMENT pwr_object            (#PCDATA)>
+
+<!ELEMENT current_gom           (#PCDATA)>
+<!ELEMENT pending_gom           (#PCDATA)>
+
+<!ELEMENT pci_bus               (#PCDATA)>
+<!ELEMENT pci_device            (#PCDATA)>
+<!ELEMENT pci_domain            (#PCDATA)>
+<!ELEMENT pci_device_id         (#PCDATA)>
+<!ELEMENT pci_sub_system_id     (#PCDATA)>
+<!ELEMENT pci_bus_id            (#PCDATA)>
+
+<!ELEMENT total                 (#PCDATA)>
+<!ELEMENT used                  (#PCDATA)>
+<!ELEMENT free                  (#PCDATA)>
+
+<!ELEMENT current_ecc           (#PCDATA)>
+<!ELEMENT pending_ecc           (#PCDATA)>
+
+<!ELEMENT gpu_util              (#PCDATA)>
+<!ELEMENT memory_util           (#PCDATA)>
+<!ELEMENT encoder_util          (#PCDATA)>
+<!ELEMENT decoder_util          (#PCDATA)>
+
+<!ELEMENT volatile              (single_bit, double_bit)>
+
+<!ELEMENT single_bit            (device_memory, register_file,
+                                 l1_cache, l2_cache, texture_memory,
+                                 total)>
+<!ELEMENT double_bit            (device_memory, register_file,
+                                 l1_cache, l2_cache, texture_memory,
+                                 total)>
+
+<!ELEMENT pending_retirement    (#PCDATA)>
+
+<!ELEMENT multiple_single_bit_retirement
+                                (retired_count, retired_page_addresses)>
+<!ELEMENT double_bit_retirement (retired_count, retired_page_addresses)>
+
+<!ELEMENT retired_count         (#PCDATA)>
+<!ELEMENT retired_page_addresses
+                                (#PCDATA | retired_page_address)*>
+<!ELEMENT retired_page_address  (#PCDATA)>
+
+
+<!ELEMENT device_memory         (#PCDATA)>
+<!ELEMENT register_file         (#PCDATA)>
+<!ELEMENT l1_cache              (#PCDATA)>
+<!ELEMENT l2_cache              (#PCDATA)>
+<!ELEMENT texture_memory        (#PCDATA)>
+
+<!ELEMENT aggregate             (single_bit, double_bit)>
+
+<!ELEMENT gpu_temp              (#PCDATA)>
+<!ELEMENT gpu_temp_max_threshold (#PCDATA)>
+<!ELEMENT gpu_temp_slow_threshold (#PCDATA)>
+
+<!-- power_state is deprecated in favor of performance_state -->
+<!ELEMENT power_state           (#PCDATA)>
+
+<!ELEMENT power_management      (#PCDATA)>
+<!ELEMENT power_draw            (#PCDATA)>
+<!ELEMENT power_limit           (#PCDATA)>
+<!ELEMENT default_power_limit   (#PCDATA)>
+<!ELEMENT enforced_power_limit   (#PCDATA)>
+<!ELEMENT min_power_limit       (#PCDATA)>
+<!ELEMENT max_power_limit       (#PCDATA)>
+
+<!ELEMENT graphics_clock        (#PCDATA)>
+<!ELEMENT sm_clock              (#PCDATA)>
+<!ELEMENT mem_clock             (#PCDATA)>
+
+<!ELEMENT performance_state     (#PCDATA)>
+
+<!ELEMENT clocks_throttle_reasons  (#PCDATA|
+                                    clocks_throttle_reason_gpu_idle|
+                                    clocks_throttle_reason_applications_clocks_setting|
+                                    clocks_throttle_reason_sw_power_cap|
+                                    clocks_throttle_reason_hw_slowdown|
+                                    clocks_throttle_reason_unknown)*>
+<!ELEMENT clocks_throttle_reason_gpu_idle              (#PCDATA)>
+<!ELEMENT clocks_throttle_reason_applications_clocks_setting (#PCDATA)>
+<!ELEMENT clocks_throttle_reason_sw_power_cap          (#PCDATA)>
+<!ELEMENT clocks_throttle_reason_hw_slowdown           (#PCDATA)>
+<!ELEMENT clocks_throttle_reason_unknown               (#PCDATA)>
+
+<!ELEMENT process_info          (pid, type, process_name, used_memory)>
+
+<!ELEMENT pid                   (#PCDATA)>
+<!ELEMENT type                  (#PCDATA)>
+<!ELEMENT process_name          (#PCDATA)>
+<!ELEMENT used_memory           (#PCDATA)>
+
+<!ELEMENT accounted_process_info (pid, gpu_util, memory_util, max_memory_usage, time)>
+
+<!ELEMENT max_memory_usage      (#PCDATA)>
+<!ELEMENT time                  (#PCDATA)>
+
+]>
+<nvidia_smi_log>
+	<timestamp>Sat Feb 11 23:35:08 2017</timestamp>
+	<driver_version>352.99</driver_version>
+	<attached_gpus>1</attached_gpus>
+	<gpu id="0000:00:03.0">
+		<product_name>GRID K520</product_name>
+		<product_brand>Grid</product_brand>
+		<display_mode>Disabled</display_mode>
+		<display_active>Disabled</display_active>
+		<persistence_mode>Enabled</persistence_mode>
+		<accounting_mode>Disabled</accounting_mode>
+		<accounting_mode_buffer_size>1920</accounting_mode_buffer_size>
+		<driver_model>
+			<current_dm>N/A</current_dm>
+			<pending_dm>N/A</pending_dm>
+		</driver_model>
+		<serial>0321014026924</serial>
+		<uuid>GPU-cc96d6f4-7f66-e1fc-8179-a45dbd47664c</uuid>
+		<minor_number>0</minor_number>
+		<vbios_version>80.04.D4.00.03</vbios_version>
+		<multigpu_board>No</multigpu_board>
+		<board_id>0x3</board_id>
+		<inforom_version>
+			<img_version>2055.0052.00.04</img_version>
+			<oem_object>1.1</oem_object>
+			<ecc_object>N/A</ecc_object>
+			<pwr_object>N/A</pwr_object>
+		</inforom_version>
+		<gpu_operation_mode>
+			<current_gom>N/A</current_gom>
+			<pending_gom>N/A</pending_gom>
+		</gpu_operation_mode>
+		<pci>
+			<pci_bus>00</pci_bus>
+			<pci_device>03</pci_device>
+			<pci_domain>0000</pci_domain>
+			<pci_device_id>118A10DE</pci_device_id>
+			<pci_bus_id>0000:00:03.0</pci_bus_id>
+			<pci_sub_system_id>101410DE</pci_sub_system_id>
+			<pci_gpu_link_info>
+				<pcie_gen>
+					<max_link_gen>3</max_link_gen>
+					<current_link_gen>1</current_link_gen>
+				</pcie_gen>
+				<link_widths>
+					<max_link_width>16x</max_link_width>
+					<current_link_width>16x</current_link_width>
+				</link_widths>
+			</pci_gpu_link_info>
+			<pci_bridge_chip>
+				<bridge_chip_type>N/A</bridge_chip_type>
+				<bridge_chip_fw>N/A</bridge_chip_fw>
+			</pci_bridge_chip>
+			<replay_counter>0</replay_counter>
+			<tx_util>N/A</tx_util>
+			<rx_util>N/A</rx_util>
+		</pci>
+		<fan_speed>N/A</fan_speed>
+		<performance_state>P8</performance_state>
+		<clocks_throttle_reasons>
+			<clocks_throttle_reason_gpu_idle>Active</clocks_throttle_reason_gpu_idle>
+			<clocks_throttle_reason_applications_clocks_setting>Not Active</clocks_throttle_reason_applications_clocks_setting>
+			<clocks_throttle_reason_sw_power_cap>Not Active</clocks_throttle_reason_sw_power_cap>
+			<clocks_throttle_reason_hw_slowdown>Not Active</clocks_throttle_reason_hw_slowdown>
+			<clocks_throttle_reason_unknown>Not Active</clocks_throttle_reason_unknown>
+		</clocks_throttle_reasons>
+		<fb_memory_usage>
+			<total>4095 MiB</total>
+			<used>11 MiB</used>
+			<free>4084 MiB</free>
+		</fb_memory_usage>
+		<bar1_memory_usage>
+			<total>128 MiB</total>
+			<used>2 MiB</used>
+			<free>126 MiB</free>
+		</bar1_memory_usage>
+		<compute_mode>Default</compute_mode>
+		<utilization>
+			<gpu_util>0 %</gpu_util>
+			<memory_util>0 %</memory_util>
+			<encoder_util>0 %</encoder_util>
+			<decoder_util>0 %</decoder_util>
+		</utilization>
+		<ecc_mode>
+			<current_ecc>N/A</current_ecc>
+			<pending_ecc>N/A</pending_ecc>
+		</ecc_mode>
+		<ecc_errors>
+			<volatile>
+				<single_bit>
+					<device_memory>N/A</device_memory>
+					<register_file>N/A</register_file>
+					<l1_cache>N/A</l1_cache>
+					<l2_cache>N/A</l2_cache>
+					<texture_memory>N/A</texture_memory>
+					<total>N/A</total>
+				</single_bit>
+				<double_bit>
+					<device_memory>N/A</device_memory>
+					<register_file>N/A</register_file>
+					<l1_cache>N/A</l1_cache>
+					<l2_cache>N/A</l2_cache>
+					<texture_memory>N/A</texture_memory>
+					<total>N/A</total>
+				</double_bit>
+			</volatile>
+			<aggregate>
+				<single_bit>
+					<device_memory>N/A</device_memory>
+					<register_file>N/A</register_file>
+					<l1_cache>N/A</l1_cache>
+					<l2_cache>N/A</l2_cache>
+					<texture_memory>N/A</texture_memory>
+					<total>N/A</total>
+				</single_bit>
+				<double_bit>
+					<device_memory>N/A</device_memory>
+					<register_file>N/A</register_file>
+					<l1_cache>N/A</l1_cache>
+					<l2_cache>N/A</l2_cache>
+					<texture_memory>N/A</texture_memory>
+					<total>N/A</total>
+				</double_bit>
+			</aggregate>
+		</ecc_errors>
+		<retired_pages>
+			<multiple_single_bit_retirement>
+				<retired_count>N/A</retired_count>
+				<retired_page_addresses>N/A</retired_page_addresses>
+			</multiple_single_bit_retirement>
+			<double_bit_retirement>
+				<retired_count>N/A</retired_count>
+				<retired_page_addresses>N/A</retired_page_addresses>
+			</double_bit_retirement>
+			<pending_retirement>N/A</pending_retirement>
+		</retired_pages>
+		<temperature>
+			<gpu_temp>30 C</gpu_temp>
+			<gpu_temp_max_threshold>97 C</gpu_temp_max_threshold>
+			<gpu_temp_slow_threshold>92 C</gpu_temp_slow_threshold>
+		</temperature>
+		<power_readings>
+			<power_state>P8</power_state>
+			<power_management>Supported</power_management>
+			<power_draw>17.95 W</power_draw>
+			<power_limit>125.00 W</power_limit>
+			<default_power_limit>125.00 W</default_power_limit>
+			<enforced_power_limit>125.00 W</enforced_power_limit>
+			<min_power_limit>85.00 W</min_power_limit>
+			<max_power_limit>130.00 W</max_power_limit>
+		</power_readings>
+		<clocks>
+			<graphics_clock>324 MHz</graphics_clock>
+			<sm_clock>324 MHz</sm_clock>
+			<mem_clock>324 MHz</mem_clock>
+		</clocks>
+		<applications_clocks>
+			<graphics_clock>N/A</graphics_clock>
+			<mem_clock>N/A</mem_clock>
+		</applications_clocks>
+		<default_applications_clocks>
+			<graphics_clock>N/A</graphics_clock>
+			<mem_clock>N/A</mem_clock>
+		</default_applications_clocks>
+		<max_clocks>
+			<graphics_clock>797 MHz</graphics_clock>
+			<sm_clock>797 MHz</sm_clock>
+			<mem_clock>2500 MHz</mem_clock>
+		</max_clocks>
+		<clock_policy>
+			<auto_boost>N/A</auto_boost>
+			<auto_boost_default>N/A</auto_boost_default>
+		</clock_policy>
+		<supported_clocks>
+			<supported_mem_clock>
+				<value>2500 MHz</value>
+				<supported_graphics_clock>797 MHz</supported_graphics_clock>
+				<supported_graphics_clock>745 MHz</supported_graphics_clock>
+				<supported_graphics_clock>679 MHz</supported_graphics_clock>
+				<supported_graphics_clock>575 MHz</supported_graphics_clock>
+			</supported_mem_clock>
+			<supported_mem_clock>
+				<value>324 MHz</value>
+				<supported_graphics_clock>324 MHz</supported_graphics_clock>
+			</supported_mem_clock>
+		</supported_clocks>
+		<processes>
+		</processes>
+		<accounted_processes>
+		</accounted_processes>
+	</gpu>
+
+</nvidia_smi_log>
