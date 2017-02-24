@@ -1,5 +1,5 @@
 
-#NVIDIA-SMI 
+#NVIDIA-SMI [![Build Status](https://travis-ci.org/rai-project/nvidia-smi.svg?branch=master)](https://travis-ci.org/rai-project/nvidia-smi)
 
 ## Notes
 
