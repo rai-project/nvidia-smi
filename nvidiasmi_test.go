@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	rice "github.com/GeertJohan/go.rice"
+	"github.com/k0kubun/pp"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -25,5 +26,6 @@ func TestNew(t *testing.T) {
 	info, err := New()
 	if err == nil {
 		assert.NotNil(t, info)
+		pp.Println(info)
 	}
 }
