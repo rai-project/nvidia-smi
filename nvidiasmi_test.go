@@ -23,7 +23,7 @@ func TestUnmarshal(t *testing.T) {
 
 func TestNew(t *testing.T) {
 	info, err := New()
-	if err != nil {
+	if err == nil {
 		assert.NotNil(t, info)
 	}
 }
