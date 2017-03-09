@@ -1,6 +1,7 @@
 package nvidiasmi
 
-type NvidiaSmiLog struct {
+type GPU struct {
+	ID                                                     string   `xml:"id,attr" json:"id"`
 	MemClockClocksGpu                                      string   `xml:"gpu>clocks>mem_clock" json:"mem_clock_clocks_gpu"`
 	L1Cache                                                string   `xml:"gpu>ecc_errors>volatile>single_bit>l1_cache" json:"l_1_cache"`
 	ProductName                                            string   `xml:"gpu>product_name" json:"product_name"`
@@ -27,7 +28,6 @@ type NvidiaSmiLog struct {
 	DeviceMemoryDoubleBitVolatileEccErrorsGpu              string   `xml:"gpu>ecc_errors>volatile>double_bit>device_memory" json:"device_memory_double_bit_volatile_ecc_errors_gpu"`
 	SupportedGraphicsClock                                 []string `xml:"gpu>supported_clocks>supported_mem_clock>supported_graphics_clock" json:"supported_graphics_clock"`
 	PersistenceMode                                        string   `xml:"gpu>persistence_mode" json:"persistence_mode"`
-	Timestamp                                              string   `xml:"timestamp" json:"timestamp"`
 	MemClock                                               string   `xml:"gpu>max_clocks>mem_clock" json:"mem_clock"`
 	GraphicsClockClocksGpu                                 string   `xml:"gpu>clocks>graphics_clock" json:"graphics_clock_clocks_gpu"`
 	Used                                                   string   `xml:"gpu>bar1_memory_usage>used" json:"used"`
@@ -38,10 +38,8 @@ type NvidiaSmiLog struct {
 	ProductBrand                                           string   `xml:"gpu>product_brand" json:"product_brand"`
 	GraphicsClockDefaultApplicationsClocksGpu              string   `xml:"gpu>default_applications_clocks>graphics_clock" json:"graphics_clock_default_applications_clocks_gpu"`
 	TotalFbMemoryUsageGpu                                  string   `xml:"gpu>fb_memory_usage>total" json:"total_fb_memory_usage_gpu"`
-	DriverVersion                                          string   `xml:"driver_version" json:"driver_version"`
 	RegisterFileDoubleBitVolatileEccErrorsGpu              string   `xml:"gpu>ecc_errors>volatile>double_bit>register_file" json:"register_file_double_bit_volatile_ecc_errors_gpu"`
 	MinPowerLimit                                          string   `xml:"gpu>power_readings>min_power_limit" json:"min_power_limit"`
-	AttachedGpus                                           string   `xml:"attached_gpus" json:"attached_gpus"`
 	TxUtil                                                 string   `xml:"gpu>pci>tx_util" json:"tx_util"`
 	TextureMemory                                          string   `xml:"gpu>ecc_errors>volatile>single_bit>texture_memory" json:"texture_memory"`
 	RegisterFileDoubleBitAggregateEccErrorsGpu             string   `xml:"gpu>ecc_errors>aggregate>double_bit>register_file" json:"register_file_double_bit_aggregate_ecc_errors_gpu"`
@@ -103,7 +101,6 @@ type NvidiaSmiLog struct {
 	DeviceMemorySingleBitAggregateEccErrorsGpu             string   `xml:"gpu>ecc_errors>aggregate>single_bit>device_memory" json:"device_memory_single_bit_aggregate_ecc_errors_gpu"`
 	DisplayActive                                          string   `xml:"gpu>display_active" json:"display_active"`
 	DefaultPowerLimit                                      string   `xml:"gpu>power_readings>default_power_limit" json:"default_power_limit"`
-	Gpu                                                    Gpu      `xml:"gpu" json:"gpu"`
 	EncoderUtil                                            string   `xml:"gpu>utilization>encoder_util" json:"encoder_util"`
 	Serial                                                 string   `xml:"gpu>serial" json:"serial"`
 	EnforcedPowerLimit                                     string   `xml:"gpu>power_readings>enforced_power_limit" json:"enforced_power_limit"`
@@ -119,6 +116,9 @@ type NvidiaSmiLog struct {
 	MemoryUtil                                             string   `xml:"gpu>utilization>memory_util" json:"memory_util"`
 }
 
-type Gpu struct {
-	ID string `xml:"id,attr" json:"id"`
+type NvidiaSmi struct {
+	Timestamp     string `xml:"timestamp" json:"timestamp"`
+	DriverVersion string `xml:"driver_version" json:"driver_version"`
+	AttachedGpus  string `xml:"attached_gpus" json:"attached_gpus"`
+	GPUS          []GPU  `xml:"gpus" json:"gpus"`
 }
