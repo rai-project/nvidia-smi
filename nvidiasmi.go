@@ -14,7 +14,9 @@ const (
 )
 
 var (
-	Info *NvidiaSmi
+	Info     *NvidiaSmi
+	HasGPU   bool
+	GPUCount = 0
 )
 
 func New() (*NvidiaSmi, error) {
@@ -37,11 +39,14 @@ func New() (*NvidiaSmi, error) {
 
 func init() {
 	config.AfterInit(func() {
+		HasGPU = false
 		info, err := New()
 		if err != nil {
 			log.WithError(err).Error("was not able to get nvidia-smi info")
 			return
 		}
 		Info = info
+		GPUCount = len(Info.GPUS)
+		HasGPU = GPUCount > 0
 	})
 }
