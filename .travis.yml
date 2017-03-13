@@ -15,5 +15,5 @@ before_install:
 install:
   - glide install
   - go build
-after_script:
+- echo "Running tests"
   - go test -v .
