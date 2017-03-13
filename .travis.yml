@@ -15,5 +15,5 @@ before_install:
 install:
   - glide install
   - go build
-script:
+after_success:
   - go test -v $(glide novendor)
