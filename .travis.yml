@@ -14,5 +14,6 @@ before_install:
   - sudo apt-get install glide -y
 install:
   - glide install
+  - go build
 script:
   - go test -v $(glide novendor)
