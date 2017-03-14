@@ -18,4 +18,4 @@ install:
 script:
   - echo "Skip tests..."
 after_script:
-  - go test -v $(glide novendor)
+  - go test -race -v $(glide novendor)
