@@ -6,7 +6,6 @@ import (
 	"encoding/xml"
 
 	"github.com/pkg/errors"
-	"github.com/rai-project/config"
 )
 
 const (
