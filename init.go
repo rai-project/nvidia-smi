@@ -16,7 +16,7 @@ func init() {
 		HasGPU = false
 		info, err := New()
 		if err != nil {
-			log.WithError(err).Error("was not able to get nvidia-smi info")
+			log.WithError(err).Info("was not able to get nvidia-smi info")
 			return
 		}
 		Info = info
