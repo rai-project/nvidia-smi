@@ -15,7 +15,7 @@ addons:
     packages:
     - glide
 install:
-  - glide install --force
+  - glide install --force --strip-vendor
   - go build
 script:
   - echo "Skip tests..."
