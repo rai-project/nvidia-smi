@@ -122,3 +122,7 @@ type NvidiaSmi struct {
 	AttachedGpus  string `xml:"attached_gpus" json:"attached_gpus"`
 	GPUS          []GPU  `xml:"gpu" json:"gpus"`
 }
+
+func (s NvidiaSmi) HasGPU() bool {
+	return len(s.GPUS) > 0
+}
