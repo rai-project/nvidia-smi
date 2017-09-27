@@ -6,11 +6,18 @@ import (
 )
 
 var (
-	log = logger.New().WithField("pkg", "nvidia-smi")
+	log         = logger.New().WithField("pkg", "nvidia-smi")
+	initialized = make(chan struct{}, 1)
 )
+
+func Wait() {
+	<-initialized
+}
 
 func init() {
 	config.AfterInit(func() {
+		defer close(initialized)
+
 		log = logger.New().WithField("pkg", "nvidia-smi")
 
 		HasGPU = false
