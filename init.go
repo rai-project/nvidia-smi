@@ -15,11 +15,8 @@ func Wait() {
 }
 
 func init() {
-	config.AfterInit(func() {
+	config.BeforeInit(func() {
 		defer close(initialized)
-
-		log = logger.New().WithField("pkg", "nvidia-smi")
-
 		HasGPU = false
 		info, err := New()
 		if err != nil {
@@ -29,5 +26,8 @@ func init() {
 		Info = info
 		GPUCount = len(Info.GPUS)
 		HasGPU = GPUCount > 0
+	})
+	config.AfterInit(func() {
+		log = logger.New().WithField("pkg", "nvidia-smi")
 	})
 }
