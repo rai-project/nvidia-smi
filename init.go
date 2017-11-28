@@ -14,18 +14,22 @@ func Wait() {
 	<-initialized
 }
 
+func Init() {
+	defer close(initialized)
+	HasGPU = false
+	info, err := New()
+	if err != nil {
+		log.WithError(err).Info("was not able to get nvidia-smi info")
+		return
+	}
+	Info = info
+	GPUCount = len(Info.GPUS)
+	HasGPU = GPUCount > 0
+}
+
 func init() {
 	config.BeforeInit(func() {
-		defer close(initialized)
-		HasGPU = false
-		info, err := New()
-		if err != nil {
-			log.WithError(err).Info("was not able to get nvidia-smi info")
-			return
-		}
-		Info = info
-		GPUCount = len(Info.GPUS)
-		HasGPU = GPUCount > 0
+		Init()
 	})
 	config.AfterInit(func() {
 		log = logger.New().WithField("pkg", "nvidia-smi")
