@@ -1,6 +1,6 @@
-// +build !linux,arm64
+// +build !linux linux,!arm64
 
-package smi
+package nvidiasmi
 
 func Init() {
 	defer close(initialized)

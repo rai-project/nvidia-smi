@@ -1,6 +1,6 @@
 // +build linux,arm64
 
-package smi
+package nvidiasmi
 
 import (
 	"github.com/rai-project/tegra"
@@ -12,13 +12,25 @@ func Init() {
 		HasGPU = false
 		return
 	}
-	HasGPU = true
+  HasGPU = true
+
+soc, err := tegra.SOC()
+if err != nil {
+  soc = tegra.UnknownSOC
+}
+
+  kind, err :=  tegra.Kind()
+  if err != nil {
+    kind = tegra.UnknownKind
+  }
+
+
 	info := &NvidiaSmi{
-    DriverVersion: "tegra-version",
+    DriverVersion: soc,
     AttachedGpus: "tegra-gpus",
     GPUS: []GPU{
       GPU{
-        ID: "tegra-gpu",
+        ID: kind,
       },
     }
   }
