@@ -1,4 +1,4 @@
-// +build arm64
+// +build linux,arm64
 
 package smi
 
@@ -16,4 +16,5 @@ func Init() {
 		HasGPU = false
 		return
 	}
+
 }
