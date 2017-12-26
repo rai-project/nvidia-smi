@@ -3,18 +3,24 @@
 package smi
 
 import (
-	"github.com/Unknwon/com"
+	"github.com/rai-project/tegra"
 )
-
-func isTegra() bool {
-	return com.IsFile("/etc/nv_tegra_release")
-}
 
 func Init() {
 	defer close(initialized)
-	if !isTegra() {
+	if !tegra.IsSupported() {
 		HasGPU = false
 		return
 	}
-
+	HasGPU = true
+	info := &NvidiaSmi{
+    DriverVersion: "tegra-version",
+    AttachedGpus: "tegra-gpus",
+    GPUS: []GPU{
+      GPU{
+        ID: "tegra-gpu",
+      },
+    }
+  }
+	GPUCount = 1
 }
