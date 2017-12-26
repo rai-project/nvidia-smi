@@ -1,7 +1,6 @@
 package nvidiasmi
 
 import (
-"runtime"
 	"github.com/rai-project/config"
 	logger "github.com/rai-project/logger"
 )
@@ -13,26 +12,6 @@ var (
 
 func Wait() {
 	<-initialized
-}
-
-func Init() {
-	defer close(initialized)
-if runtime.GOARCH == "arm64" {
-HasGPU = true 
-GPUCount = 1
-Info = &NvidiaSmi{}
-return
-}
-
-	HasGPU = false 
-	info, err := New()
-	if err != nil {
-		log.WithError(err).Info("was not able to get nvidia-smi info")
-		return
-	}
-	Info = info
-	GPUCount = len(Info.GPUS)
-	HasGPU = GPUCount > 0
 }
 
 func init() {
