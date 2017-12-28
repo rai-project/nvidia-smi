@@ -8,7 +8,7 @@ import (
 
 func Init() {
 	defer close(initialized)
-	if !tegra.IsSupported() {
+	if !tegra.IsSupported {
 		HasGPU = false
 		return
 	}
@@ -24,12 +24,12 @@ func Init() {
 		kind = tegra.UnknownKind
 	}
 
-	info := &NvidiaSmi{
-		DriverVersion: soc,
+	Info = &NvidiaSmi{
+		DriverVersion: string(soc),
 		AttachedGpus:  "tegra-gpus",
 		GPUS: []GPU{
 			GPU{
-				ID: kind,
+				ID: string(kind),
 			},
 		},
 	}
