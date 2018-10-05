@@ -13,9 +13,10 @@ const (
 )
 
 var (
-	Info     *NvidiaSmi
-	HasGPU   bool = false
-	GPUCount      = 0
+	Info       *NvidiaSmi
+	HasGPU     bool = false
+	GPUCount        = 0
+	HyperQSize      = 32
 )
 
 func New() (*NvidiaSmi, error) {
