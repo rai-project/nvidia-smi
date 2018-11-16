@@ -1,4 +1,5 @@
-// +build !linux linux,!arm64
+// +build !nogpu
+// +build !linux !arm64
 
 package nvidiasmi
 
