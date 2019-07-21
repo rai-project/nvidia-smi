@@ -47,6 +47,9 @@ func (g GPU) NumSMs() (int, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.NumSMs == 0 {
+				panic("expecting a non-zero num sms")
+			}
 			return info.NumSMs, nil
 		}
 	}
@@ -57,6 +60,9 @@ func (g GPU) Architecture() (string, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.Architecture == "" {
+				panic("expecting a non-zero architecture")
+			}
 			return info.Architecture, nil
 		}
 	}
@@ -67,6 +73,9 @@ func (g GPU) ClockRate() (int64, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.ClockRate == 0 {
+				panic("expecting a non-zero clock rate")
+			}
 			return info.ClockRate, nil
 		}
 	}
@@ -77,6 +86,9 @@ func (g GPU) ComputeCapability() (float64, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.ComputeCapability == 0 {
+				panic("expecting a non-zero compute capability")
+			}
 			return info.ComputeCapability, nil
 		}
 	}
@@ -87,6 +99,9 @@ func (g GPU) TheoreticalGFlops() (int64, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.PeekGFlops == 0 {
+				panic("expecting a non-zero peek gflops")
+			}
 			return info.PeekGFlops, nil
 		}
 	}
@@ -97,6 +112,9 @@ func (g GPU) MemoryBandwidth() (float64, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.MemoryBandwidth == 0 {
+				panic("expecting a non-zero memory bandwidth")
+			}
 			return info.MemoryBandwidth, nil
 		}
 	}
@@ -107,6 +125,9 @@ func (g GPU) InterconnectName() (string, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.Interconnect.Name() == "" {
+				panic("expecting a non-zero name")
+			}
 			return info.Interconnect.Name(), nil
 		}
 	}
@@ -117,6 +138,9 @@ func (g GPU) InterconnectBandwidth() (float64, error) {
 	name := strings.ToLower(g.ProductName)
 	for _, info := range NvidiaGPUs {
 		if strings.ToLower(info.Name) == name {
+			if info.Interconnect.Bandwidth() == 0 {
+				panic("expecting a non-zero bandwidth")
+			}
 			return info.Interconnect.Bandwidth(), nil
 		}
 	}
