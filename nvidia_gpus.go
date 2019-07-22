@@ -13,13 +13,13 @@ type NvidiaGPU struct {
 
 var (
 	NVIDIATeslaV100SXM2 = NvidiaGPU{
-		Name:              "TESLA V100 SXM2",
+		Name:              "Tesla V100-SXM2-16GB",
 		NumSMs:            80,
 		ComputeCapability: 7.0,
 		Architecture:      "Volta",
-		Interconnect:      SXM2{},
+		Interconnect:      NVLink2{},
 		ClockRate:         int64(1530),
-		PeekGFlops:        int64(15000),
+		PeekGFlops:        int64(15700),
 		MemoryBandwidth:   float64(900),
 	}
 

@@ -17,7 +17,10 @@ func (Infiniband) Name() string {
 	return "Infiniband"
 }
 
+// not sure
 func (Infiniband) Bandwidth() float64 {
+	panic("Infiniband not implemented")
+
 	return float64(70) * Gbps
 }
 
@@ -128,8 +131,6 @@ func (PCIe3) Bandwidth() float64 {
 	return float64(16) * GBps
 }
 
-// Here we assume PCIe x16.
-// PCIe 3.0: 1GB/s per lane per direction.
 type SXM2 struct {
 }
 
@@ -138,6 +139,5 @@ func (SXM2) Name() string {
 }
 
 func (SXM2) Bandwidth() float64 {
-	panic("SXM2 bandwidth not implemented")
-	return 0
+	return float64(300) * GBps
 }
