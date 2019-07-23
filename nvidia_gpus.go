@@ -34,10 +34,19 @@ var (
 		MemoryBandwidth:   float64(900),
 	}
 
-	NVIDIATeslaV100PCIe = NvidiaGPU{
-		Name:            "TESLA V100 PCIE",
+	NVIDIATeslaV100PCIe16GB = NvidiaGPU{
+		Name:            "Tesla V100-PCIE-16GB",
 		Architecture:    "Volta",
-		Interconnect:    PCIe2{},
+		Interconnect:    PCIe3{},
+		ClockRate:       int64(1380),
+		PeekGFlops:      int64(14000),
+		MemoryBandwidth: float64(900),
+	}
+
+	NVIDIATeslaV100PCIe32GB = NvidiaGPU{
+		Name:            "Tesla V100-PCIE-32GB",
+		Architecture:    "Volta",
+		Interconnect:    PCIe3{},
 		ClockRate:       int64(1380),
 		PeekGFlops:      int64(14000),
 		MemoryBandwidth: float64(900),
@@ -66,18 +75,18 @@ var (
 		MemoryBandwidth:   float64(346),
 	}
 
-	NVIDIATeslaP100SXM2 = NvidiaGPU{
-		Name:            "TESLA P100 SXM2",
+	NVIDIATeslaP100SXM216GB = NvidiaGPU{
+		Name:            "Tesla P100-SXM2-16GB",
 		Architecture:    "Pascal",
 		NumSMs:          56,
-		Interconnect:    SXM2{},
+		Interconnect:    NVLink1{},
 		ClockRate:       int64(1481),
-		PeekGFlops:      int64(10600),
+		PeekGFlops:      int64(10610),
 		MemoryBandwidth: float64(732),
 	}
 
-	NVIDIATeslaP100PCIe = NvidiaGPU{
-		Name:            "TESLA P100 PCIE",
+	NVIDIATeslaP100PCIe16GB = NvidiaGPU{
+		Name:            "Tesla P100-PCIE-16GB",
 		Architecture:    "Pascal",
 		NumSMs:          56,
 		Interconnect:    PCIe2{},
@@ -141,11 +150,12 @@ var (
 
 	NvidiaGPUs = []NvidiaGPU{
 		NVIDIATeslaV100SXM2,
-		NVIDIATeslaV100PCIe,
+		NVIDIATeslaV100PCIe16GB,
+		NVIDIATeslaV100PCIe32GB,
 		NVIDIATeslaP4,
 		NVIDIATeslaP40,
-		NVIDIATeslaP100SXM2,
-		NVIDIATeslaP100PCIe,
+		NVIDIATeslaP100SXM216GB,
+		NVIDIATeslaP100PCIe16GB,
 		NVIDIATitanXP,
 		NVIDIATitanX,
 		NVIDIAK20,
