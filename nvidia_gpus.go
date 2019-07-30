@@ -166,6 +166,7 @@ var (
 	}
 
 	NvidiaGPUs = []NvidiaGPU{
+    NVIDIARTX6000,
 		NVIDIATeslaV100SXM2,
 		NVIDIATeslaV100PCIe16GB,
 		NVIDIATeslaV100PCIe32GB,
