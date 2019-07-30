@@ -12,6 +12,17 @@ type NvidiaGPU struct {
 }
 
 var (
+	NVIDIARTX6000 = NvidiaGPU{
+		Name:              "Quadro RTX 6000",
+		NumSMs:            40,
+		ComputeCapability: 7.5,
+		Architecture:      "Turing",
+		Interconnect:      PCIe3{},
+		ClockRate:         int64(1770),
+		PeekGFlops:        int64(16300),
+		MemoryBandwidth:   float64(624),
+	}
+
 	NVIDIAT4 = NvidiaGPU{
 		Name:              "Tesla T4",
 		NumSMs:            40,
@@ -75,24 +86,15 @@ var (
 		MemoryBandwidth:   float64(346),
 	}
 
-	NVIDIATeslaP100SXM216GB = NvidiaGPU{
-		Name:            "Tesla P100-SXM2-16GB",
-		Architecture:    "Pascal",
-		NumSMs:          56,
-		Interconnect:    NVLink1{},
-		ClockRate:       int64(1481),
-		PeekGFlops:      int64(10610),
-		MemoryBandwidth: float64(732),
-	}
-
 	NVIDIATeslaP100PCIe16GB = NvidiaGPU{
-		Name:            "Tesla P100-PCIE-16GB",
-		Architecture:    "Pascal",
-		NumSMs:          56,
-		Interconnect:    PCIe2{},
-		ClockRate:       int64(1328),
-		PeekGFlops:      int64(9300),
-		MemoryBandwidth: float64(732),
+		Name:              "Tesla P100-PCIE-16GB",
+		Architecture:      "Pascal",
+		ComputeCapability: 6.0,
+		NumSMs:            80,
+		Interconnect:      PCIe3{},
+		ClockRate:         int64(1380),
+		PeekGFlops:        int64(9300),
+		MemoryBandwidth:   float64(732),
 	}
 
 	NVIDIATitanXP = NvidiaGPU{
@@ -112,40 +114,55 @@ var (
 		PeekGFlops:      int64(6144),
 		MemoryBandwidth: float64(336.5),
 	}
-	NVIDIAK20 = NvidiaGPU{
-		Name:            "K20",
-		Architecture:    "Kepler",
-		Interconnect:    PCIe2{},
-		ClockRate:       int64(1000),
-		PeekGFlops:      int64(3520),
-		MemoryBandwidth: float64(208),
+
+	// https://www.microway.com/knowledge-center-articles/in-depth-comparison-of-nvidia-tesla-maxwell-gpu-accelerators/
+	NVIDIAM60 = NvidiaGPU{
+		Name:            "Tesla M60",
+		Architecture:    "Maxwell",
+		Interconnect:    PCIe3{},
+		NumSMs:          16,
+		ClockRate:       int64(1178),
+		PeekGFlops:      int64(9640),
+		MemoryBandwidth: float64(320),
 	}
+
+	// https://www.microway.com/knowledge-center-articles/in-depth-comparison-of-nvidia-tesla-kepler-gpu-accelerators/
+	NVIDIAK80 = NvidiaGPU{
+		Name:            "Tesla K80",
+		Architecture:    "Kepler",
+		Interconnect:    PCIe3{},
+		NumSMs:          26,
+		ClockRate:       int64(875),
+		PeekGFlops:      int64(8730),
+		MemoryBandwidth: float64(480),
+	}
+
+	NVIDIAK40 = NvidiaGPU{
+		Name:            "Tesla K40",
+		Architecture:    "Kepler",
+		Interconnect:    PCIe3{},
+		NumSMs:          15,
+		ClockRate:       int64(875),
+		PeekGFlops:      int64(5040),
+		MemoryBandwidth: float64(288),
+	}
+
 	NVIDIAK20X = NvidiaGPU{
-		Name:            "K20X",
+		Name:            "Tesla K20X",
 		Architecture:    "Kepler",
 		Interconnect:    PCIe2{},
-		ClockRate:       int64(1000),
+		ClockRate:       int64(784),
 		PeekGFlops:      int64(3935),
 		MemoryBandwidth: float64(250),
 	}
 
-	NVIDIAK40 = NvidiaGPU{
-		Name:            "K40",
+	NVIDIAK20 = NvidiaGPU{
+		Name:            "Tesla K20",
 		Architecture:    "Kepler",
 		Interconnect:    PCIe2{},
-		ClockRate:       int64(745),
-		PeekGFlops:      int64(4290),
-		MemoryBandwidth: float64(288),
-	}
-
-	NVIDIAK80 = NvidiaGPU{
-		Name:            "K80",
-		Architecture:    "Kepler",
-		Interconnect:    PCIe2{},
-		NumSMs:          13,
-		ClockRate:       int64(560),
-		PeekGFlops:      int64(5600),
-		MemoryBandwidth: float64(480),
+		ClockRate:       int64(705),
+		PeekGFlops:      int64(3520),
+		MemoryBandwidth: float64(208),
 	}
 
 	NvidiaGPUs = []NvidiaGPU{
@@ -158,6 +175,7 @@ var (
 		NVIDIATeslaP100PCIe16GB,
 		NVIDIATitanXP,
 		NVIDIATitanX,
+		NVIDIAM60,
 		NVIDIAK20,
 		NVIDIAK20X,
 		NVIDIAK40,

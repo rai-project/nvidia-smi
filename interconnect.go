@@ -1,8 +1,8 @@
 package nvidiasmi
 
 const (
-	Gbps = float64(1)
-	GBps = float64(8)
+	GBps = float64(1)
+	Gbps = float64(0.125)
 )
 
 type Interconnect interface {
@@ -17,11 +17,8 @@ func (Infiniband) Name() string {
 	return "Infiniband"
 }
 
-// not sure
 func (Infiniband) Bandwidth() float64 {
-	panic("Infiniband not implemented")
-
-	return float64(70) * Gbps
+	return float64(40) * Gbps
 }
 
 type HBM3 struct {
@@ -32,8 +29,7 @@ func (HBM3) Name() string {
 }
 
 func (HBM3) Bandwidth() float64 {
-	panic("HBM3 not implemented")
-	return 1.0
+	return float64(512) * GBps
 }
 
 type HBM2 struct {
@@ -44,8 +40,7 @@ func (HBM2) Name() string {
 }
 
 func (HBM2) Bandwidth() float64 {
-	panic("HBM2 not implemented")
-	return 1.0
+	return float64(256) * GBps
 }
 
 type Ethernet struct {
@@ -56,7 +51,7 @@ func (Ethernet) Name() string {
 }
 
 func (Ethernet) Bandwidth() float64 {
-	return float64(10) * Gbps
+	return float64(10) * GBps
 }
 
 type Ethernet20 struct {
@@ -67,7 +62,7 @@ func (Ethernet20) Name() string {
 }
 
 func (Ethernet20) Bandwidth() float64 {
-	return float64(20) * Gbps
+	return float64(20) * GBps
 }
 
 type NVLink1 struct {
@@ -78,7 +73,7 @@ func (NVLink1) Name() string {
 }
 
 func (NVLink1) Bandwidth() float64 {
-	return float64(80) * GBps
+	return float64(160) * GBps
 }
 
 type NVLink2 struct {
@@ -98,7 +93,7 @@ type PCIe1 struct {
 }
 
 func (PCIe1) Name() string {
-	return "PCIe2"
+	return "PCIe1"
 }
 
 func (PCIe1) Bandwidth() float64 {
@@ -132,12 +127,4 @@ func (PCIe3) Bandwidth() float64 {
 }
 
 type SXM2 struct {
-}
-
-func (SXM2) Name() string {
-	return "SXM2"
-}
-
-func (SXM2) Bandwidth() float64 {
-	return float64(300) * GBps
 }
